@@ -6,7 +6,7 @@
 /*   By: abait-ta <abait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:56:08 by abait-ta          #+#    #+#             */
-/*   Updated: 2024/01/17 20:38:03 by abait-ta         ###   ########.fr       */
+/*   Updated: 2024/01/17 21:47:27 by abait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,43 +38,62 @@ Intern::~Intern()
 
 AForm*  Intern::makeForm(std::string FormName, std::string Target)
 {
+    typedef AForm* (Intern::*memberfunc)(std::string);
+    memberfunc func[3] = {&Intern::Shrubbery,  &Intern::Robot, &Intern::President};
+    
     std::string arr[3] = {"Shrubbery Creation", "Robotomy Request", "Presidential Pardon"};
     int FormToCreat;
-        int i (-1);
-        while( ++i < 3)
-        {
-            if (FormName.compare(arr[i]) == 0)
-            {
+    int i (-1);
+    while( ++i < 3)
+    {
+       if (FormName.compare(arr[i]) == 0){
                 FormToCreat = i;
                 break; 
-            }
         }
-        if (i == 3)
-            throw NoSuitabName();
+    }
+    if (i == 3)
+        throw NoSuitabName();
     switch (FormToCreat)
     {
     case 0:
         std::cout << "==>Intern creates  " <<  FormName << std::endl;
-        return (new ShrubberyCreationForm(Target));
+        return ((this->*func[0])(Target));
         break;
     case 1:
         std::cout << "==>Intern creates  " <<  FormName << std::endl;
-        return (new RobotomyRequestForm(Target));
+        return ((this->*func[1])(Target));
         break;
     case 2:
         std::cout << "==>Intern creates  " <<  FormName << std::endl;
-        return (new PresidentialPardonForm(Target));
+        return ((this->*func[2])(Target));
         break;
     default:
-        std::cout << "Will Not never Be reached " << std::endl;
+        throw NoPredectedError();
         break;
     }
     return (NULL);
 }
 
-const char* Intern::NoSuitabName::what ()  const throw()
-{
-    return ("No Suitable name re try another Valide Name");
+const char* Intern::NoSuitabName::what ()  const throw(){
+    return ("[--No Suitable name retry With another Valide Name--]");
+}
 
+const char* Intern::NoPredectedError::what ()  const throw(){
+    return (" No Predected Error Occureeed What's Going on ?????? ");
+}
+
+AForm* Intern::Shrubbery(std::string Target)
+{
+    return (new ShrubberyCreationForm(Target));
+}
+
+AForm* Intern::Robot(std::string Target)
+{
+    return (new RobotomyRequestForm(Target));
+}
+
+AForm* Intern::President(std::string Target)
+{
+    return (new PresidentialPardonForm(Target));
 }
 

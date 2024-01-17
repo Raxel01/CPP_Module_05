@@ -12,7 +12,10 @@
 
 class Intern
 {
-
+    private :
+        AForm* Shrubbery(std::string Target);  
+        AForm* Robot(std::string Target); 
+        AForm* President(std::string Target);
     public :
         Intern();
         Intern(const Intern &Obj);
@@ -22,9 +25,15 @@ class Intern
             public :
                 const char* what() const throw();
         };
+        class NoPredectedError : public std::exception
+        {
+            public :
+                const char* what() const throw();
+        };
         AForm*  makeForm(std::string FormName, std::string Target);
         ~Intern();
 };
+
 
 #endif
     

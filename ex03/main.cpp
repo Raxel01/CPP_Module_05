@@ -39,9 +39,13 @@ int main ()
     Intern OBJint;
 
     AForm *ptrr;
-
+    std::cout << std::endl;
+    std::cout << std::endl;
     ptrr = OBJint.makeForm("Presidential Pardon", "Lbaccaleauriataa");
     // std::cout << "Form Name : " << ptrr->GetName() << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    
     }catch(const std::exception& e){
         std::cerr << e.what() << std::endl;
     }
