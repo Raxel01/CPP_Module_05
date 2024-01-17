@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-
+#include "AForm.hpp"
 
 std::ostream &operator <<(std::ostream &os, const Bureaucrat  &Obj)
 {
@@ -51,7 +51,7 @@ int     Bureaucrat::getGrade() const
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << " Destructor Called " <<std::endl;
+    std::cout << " Bureaucrat Destructor Called " <<std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
@@ -76,6 +76,25 @@ void   Bureaucrat::decrement()
     if ((grade + 1) > 150)
         throw GradeTooLowException();
     grade++;
-} 
+}
 
+void    Bureaucrat::signAForm(AForm& AFormObj)
+{
+    try{
+        AFormObj.beSigned(*this);
+        std::cout << this->getName() << " signed " << AFormObj.GetName() << std::endl;
+    }catch (std::exception &e){
+        std::cout << this->getName() <<  " couldn't sign " << AFormObj.GetName() << " because " << e.what() <<std::endl;
+    }
+}
 
+void    Bureaucrat::executeForm(AForm const & form)
+{
+    try{
+        form.execute(*this);
+        std::cout << this->getName() << " executed " << form.GetName() << std::endl;
+    }
+    catch(std::exception &e){
+        std::cout << this->getName() << " can't execute " << form.GetName() << " Because "<< e.what() << std::endl;
+    }
+}

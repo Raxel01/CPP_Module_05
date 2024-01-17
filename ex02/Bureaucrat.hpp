@@ -6,7 +6,7 @@
 /*   By: abait-ta <abait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 20:27:14 by abait-ta          #+#    #+#             */
-/*   Updated: 2024/01/16 08:24:00 by abait-ta         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:12:26 by abait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 #include <iostream>
 #include <iomanip>
 #include <exception>
-#include <typeinfo>
 
+class AForm;
 class   Bureaucrat
 {
     private :
-        int               grade; // 1 big Value | 150 min Value
+        int                 grade; // 1 big Value | 150 min Value
         const std::string   name;
     public  :
         Bureaucrat();
-        Bureaucrat(int GradeToAssign, std::string NameToAssign);
         Bureaucrat(const Bureaucrat& Obj);
         Bureaucrat& operator=(const Bureaucrat& Obj);
+        Bureaucrat(int GradeToAssign, std::string NameToAssign);
         const std::string getName() const;
         int             getGrade() const;
         class GradeTooHighException : public std::exception{
@@ -38,8 +38,11 @@ class   Bureaucrat
             public :
                 const char* what() const throw();
         };
+        void    executeForm(AForm const & form);
         void    increment();
         void    decrement();
+        void    signAForm(AForm& AFormObj);
+        
 
         ~Bureaucrat();
 };
