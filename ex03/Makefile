@@ -6,7 +6,7 @@
 #    By: abait-ta <abait-ta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 16:43:30 by abait-ta          #+#    #+#              #
-#    Updated: 2024/01/17 16:44:07 by abait-ta         ###   ########.fr        #
+#    Updated: 2024/01/17 18:33:04 by abait-ta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -rf
 
-NAME = BureaucratExecution
+NAME = InternSwitcher
 
 OBJ = ${SRC:.cpp=.o}
 

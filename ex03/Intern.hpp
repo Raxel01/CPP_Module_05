@@ -26,16 +26,5 @@ class Intern
         ~Intern();
 };
 
-
-AForm*  Intern::makeForm(std::string FormName, std::string Target)
-{
-
-
-}
-
-const char* Intern::NoSuitabName::what ()  const throw()
-{
-
-}
 #endif
     

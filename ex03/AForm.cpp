@@ -15,7 +15,7 @@ Requiredgrade(AffectRequiredgrade), GradeToExecute(AffectGradeToExecute)
         throw GradeTooHighException();
     if (Requiredgrade > 150 || GradeToExecute > 150)
         throw GradeTooLowException();
-    std::cout << " Parametrised Constructor Called " <<std::endl;
+    std::cout << "Form Parametrised Constructor Called " <<std::endl;
 }
 
 AForm::AForm(const AForm& Obj) : name(Obj.name), AFormStatus(Obj.AFormStatus),
